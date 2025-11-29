@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-TEC JAINx EDUCATION</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        .post-container {
+            width: 60%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        .media {
+            width: 200px;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-around;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+        }
+        .no-video {
+            color: red;
+            font-size: 14px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+{% block content %}
+{% for i in post %}
+<div class="post-container">
+    
+    <h2>{{ i.title }}</h2>
+    <div class="media">
+
+ 
+
+    <img src="{{ i.image.url }}" alt="Image">
+
+    {% if i.video %}
+    <video controls>
+        <source src="{{ i.video.url }}" type="video/mp4">
+    </video>
+    {% else %}
+    <p class="no-video">No video uploaded</p>
+    {% endif %}   </div>
+
+    <p><strong>Description:</strong></p>
+    <p style="color: orange;">{{ i.description }}</p>
+
+    <p><strong>Author:</strong> {{ i.author }}</p>
+    <p><strong>Date & Time:</strong> {{ i.created_at }}</p>
+
+</div>
+{% endfor %}
+{% endblock content %}
+
+</body>
+</html>
